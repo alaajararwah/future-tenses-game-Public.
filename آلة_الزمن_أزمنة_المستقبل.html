@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#11172f">
+<title>آلة الزمن: أزمنة المستقبل</title>
+<style>
+:root{--bg:#10152d;--panel:#1d2940;--panel2:#172238;--cyan:#31d4e3;--gold:#f5c75e;--green:#22c58b;--red:#ff657a;--text:#f7f8ff;--muted:#b8c4d8}
+*{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at 50% 0,#25345a 0,#10152d 48%);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;color:var(--text);min-height:100vh;padding:18px}
+.wrap{max-width:760px;margin:auto}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:4px 0 18px}.brand{font-size:14px;color:var(--muted)}.pill{border:1px solid #43516d;border-radius:99px;padding:7px 12px;font-size:13px;color:var(--cyan)}
+.hero,.panel{background:linear-gradient(145deg,#202c45,#172238);border:1px solid #34425e;border-radius:25px;padding:24px;box-shadow:0 18px 40px #05091866}
+.hero{text-align:center;padding:30px 22px}.rocket{font-size:42px}.hero h1{font-size:clamp(27px,6vw,42px);margin:8px 0;color:var(--cyan)}.hero p{color:var(--muted);line-height:1.8;margin:8px auto 22px;max-width:540px}
+button{font:inherit;cursor:pointer;border:0;border-radius:15px;padding:14px 18px;font-weight:800;transition:.15s}button:active{transform:scale(.98)}.primary{background:linear-gradient(90deg,#2879ee,#18bdc9);color:white;min-width:180px}.secondary{background:#2b3a55;color:#e9f1ff;border:1px solid #53627d}.small{padding:9px 13px;font-size:13px}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}.feature{background:#131d32;border-radius:14px;padding:12px 8px;color:var(--muted);font-size:13px}
+.hidden{display:none!important}.progressrow{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;margin-bottom:10px}.bar{height:9px;background:#0e1729;border-radius:99px;overflow:hidden;margin-bottom:22px}.bar>div{height:100%;width:0;background:linear-gradient(90deg,#2879ee,var(--cyan));transition:width .3s}
+.kicker{color:var(--gold);font-weight:800;font-size:14px;margin-bottom:10px}.question{direction:ltr;text-align:center;font-size:clamp(22px,5vw,31px);font-weight:850;line-height:1.5;background:#111a30;border:1px solid #3a4965;border-radius:18px;padding:24px 14px;margin:12px 0 18px}
+.options{display:grid;gap:11px}.option{width:100%;background:#202d43;color:white;border:1px solid #53617a;text-align:center;font-size:18px;direction:ltr}.option:hover{border-color:var(--cyan);background:#263a53}.option.correct{background:#124b42;border-color:var(--green)}.option.wrong{background:#552a3a;border-color:var(--red)}.option:disabled{cursor:default;opacity:1}
+.feedback{margin-top:16px;border-radius:15px;padding:14px 16px;line-height:1.7;background:#111b30;color:var(--muted)}.feedback.good{border:1px solid #208d70;color:#c7ffeb}.feedback.bad{border:1px solid #a8495c;color:#ffe0e6}.explain{display:block;margin-top:5px;color:#dce6f5}
+.actions{display:flex;justify-content:space-between;gap:10px;margin-top:18px;flex-wrap:wrap}.scorebig{font-size:52px;font-weight:900;color:var(--cyan);text-align:center}.result{text-align:center}.result h2{font-size:30px}.review{text-align:right;margin-top:18px}.review details{background:#131e33;border:1px solid #34425e;padding:12px;border-radius:12px;margin:8px 0}.review summary{cursor:pointer;font-weight:700}.footer{text-align:center;color:#8190aa;font-size:12px;margin:18px 0}
+@media(max-width:520px){body{padding:12px}.hero,.panel{padding:19px}.features{grid-template-columns:1fr 1fr}.option{font-size:16px;padding:14px 10px}.actions button{flex:1}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><div class="brand">🚀 لعبة تعليمية تفاعلية</div><div class="pill">FUTURE TENSES</div></div>
+  <section id="start" class="hero">
+    <div class="rocket">🚀⏳</div>
+    <h1>آلة الزمن: أزمنة المستقبل</h1>
+    <p>انطلقي في رحلة عبر الزمن! اختاري الزمن الصحيح في كل موقف، واجمعي النقاط لفتح بوابة المستقبل.</p>
+    <button class="primary" onclick="startGame()">ابدأ التحدي 🎮</button>
+    <div class="features"><div class="feature">🧠 10 أسئلة متنوعة</div><div class="feature">⭐ نقاط وتغذية راجعة</div><div class="feature">🔁 أعيدي اللعب متى شئتِ</div></div>
+  </section>
+  <section id="game" class="panel hidden">
+    <div class="progressrow"><span id="qcount">السؤال 1 من 10</span><span id="score">النقاط: 0</span></div>
+    <div class="bar"><div id="barfill"></div></div>
+    <div class="kicker" id="category">المستقبل البسيط</div>
+    <div class="question" id="question"></div>
+    <div class="options" id="options"></div>
+    <div id="feedback" class="feedback hidden" aria-live="polite"></div>
+    <div class="actions"><button class="secondary small" onclick="quitGame()">إنهاء الجولة</button><button id="next" class="primary" onclick="nextQuestion()" disabled>السؤال التالي ←</button></div>
+  </section>
+  <section id="result" class="panel result hidden">
+    <div class="rocket">🏆</div><h2 id="resultTitle">أحسنتِ!</h2><div class="scorebig" id="finalScore">0/10</div><p id="resultText" style="color:var(--muted);line-height:1.8"></p>
+    <button class="primary" onclick="startGame()">العب مرة أخرى 🔁</button>
+    <div class="review" id="review"></div>
+  </section>
+  <div class="footer">المعلم الذكي العربي · تعلّم بالممارسة والتحدّي</div>
+</div>
+<script>
+const questions=[
+{cat:"المستقبل البسيط · Future Simple",q:"I think our team ______ the match tomorrow.",opts:["will win","is winning","has won","was winning"],a:0,why:"نستخدم will مع التوقعات والآراء حول المستقبل."},
+{cat:"المستقبل المخطط · Be going to",q:"Look at those dark clouds! It ______.",opts:["will rain yesterday","is going to rain","rains","was raining"],a:1,why:"نستخدم be going to عندما يوجد دليل واضح أمامنا الآن."},
+{cat:"المضارع المستمر للمستقبل · Present Continuous",q:"We ______ our grandparents on Friday. We arranged it yesterday.",opts:["visit","will visit","are visiting","visited"],a:2,why:"نستخدم المضارع المستمر لترتيب أو موعد مستقبلي متفق عليه."},
+{cat:"المستقبل المستمر · Future Continuous",q:"At 8 p.m. tonight, I ______ for my exam.",opts:["will be studying","study","am going study","studied"],a:0,why:"will be + verb-ing يصف فعلًا سيكون مستمرًا في وقت محدد بالمستقبل."},
+{cat:"اختاري الزمن المناسب",q:"The phone is ringing. I ______ it!",opts:["am going to answer yesterday","will answer","answered","am answering last night"],a:1,why:"قرار لحظي اتُّخذ وقت الكلام؛ لذلك نستخدم will."},
+{cat:"المستقبل المخطط · Be going to",q:"They have bought the tickets. They ______ to London next week.",opts:["are going to travel","will travelling","travelled","are travel"],a:0,why:"وجود تذكرة وخطة مسبقة يدل على نية أو ترتيب مستقبلي."},
+{cat:"المضارع المستمر للمستقبل",q:"What ______ you ______ tomorrow evening?",opts:["do / do","are / doing","will / did","is / do"],a:1,why:"للسؤال عن ترتيب مستقبلي نستخدم: am/is/are + verb-ing."},
+{cat:"المستقبل المستمر · Future Continuous",q:"This time tomorrow, she ______ over the sea.",opts:["will fly","will be flying","is fly","flew"],a:1,why:"This time tomorrow يحدد لحظة مستقبلية سيكون الفعل جاريًا خلالها."},
+{cat:"اختاري الزمن المناسب",q:"Maybe I ______ you after school. I'm not sure yet.",opts:["call","am calling yesterday","will call","called"],a:2,why:"نستخدم will مع الاحتمال أو التوقع غير المؤكد."},
+{cat:"تحدي الأزمنة الأربعة",q:"The window is open. I ______ it before it gets cold.",opts:["am closing yesterday","will close","closed tomorrow","will be close"],a:1,why:"هذا قرار أو عرض يُتخذ الآن؛ الصيغة الصحيحة will + base verb."}
+];
+let order=[],idx=0,points=0,answers=[];
+function startGame(){order=[...questions.keys()].sort(()=>Math.random()-.5);idx=0;points=0;answers=[];document.getElementById('start').classList.add('hidden');document.getElementById('result').classList.add('hidden');document.getElementById('game').classList.remove('hidden');render()}
+function render(){let q=questions[order[idx]];document.getElementById('qcount').textContent=`السؤال ${idx+1} من ${questions.length}`;document.getElementById('score').textContent=`النقاط: ${points}`;document.getElementById('barfill').style.width=`${idx/questions.length*100}%`;document.getElementById('category').textContent=q.cat;document.getElementById('question').textContent=q.q;let box=document.getElementById('options');box.innerHTML='';q.opts.forEach((op,i)=>{let b=document.createElement('button');b.className='option';b.textContent=op;b.onclick=()=>choose(i);box.appendChild(b)});let f=document.getElementById('feedback');f.className='feedback hidden';f.innerHTML='';let n=document.getElementById('next');n.disabled=true;n.textContent=idx===questions.length-1?'عرض النتيجة 🏆':'السؤال التالي ←'}
+function choose(i){let q=questions[order[idx]],buttons=[...document.querySelectorAll('.option')],ok=i===q.a;buttons.forEach((b,j)=>{b.disabled=true;if(j===q.a)b.classList.add('correct');else if(j===i)b.classList.add('wrong')});if(ok)points++;answers.push({q,chosen:i,ok});document.getElementById('score').textContent=`النقاط: ${points}`;let f=document.getElementById('feedback');f.className='feedback '+(ok?'good':'bad');f.innerHTML=(ok?'✅ إجابة صحيحة! أحسنتِ.':'❌ ليست الإجابة الصحيحة. الإجابة هي: <b dir="ltr">'+q.opts[q.a]+'</b>')+'<span class="explain">'+q.why+'</span>';document.getElementById('next').disabled=false}
+function nextQuestion(){idx++;if(idx<questions.length)render();else showResult()}
+function showResult(){document.getElementById('game').classList.add('hidden');document.getElementById('result').classList.remove('hidden');document.getElementById('finalScore').textContent=`${points}/${questions.length}`;let pct=points/questions.length;document.getElementById('resultTitle').textContent=pct===1?'رائعة! أتقنتِ أزمنة المستقبل 🎉':pct>=.7?'عمل ممتاز! 🚀':pct>=.5?'أداء جيد، واصلي التدريب!':'لا تستسلمي، المحاولة تصنع الفرق!';document.getElementById('resultText').textContent=`حصلتِ على ${points*10}% من العلامة. ${points>=7?'أصبحتِ أقرب لإتقان أزمنة المستقبل.':'راجعي التوضيحات ثم أعيدي التحدي لتحسين نتيجتك.'}`;document.getElementById('barfill').style.width='100%';document.getElementById('review').innerHTML='<h3>مراجعة الإجابات</h3>'+answers.map((x,i)=>`<details><summary>${i+1}. ${x.ok?'✅':'❌'} ${x.q.q}</summary><p dir="ltr">Correct: ${x.q.opts[x.q.a]}</p><p>${x.q.why}</p></details>`).join('')}
+function quitGame(){if(confirm('هل تريدين إنهاء الجولة والعودة للبداية؟')){document.getElementById('game').classList.add('hidden');document.getElementById('start').classList.remove('hidden')}}
+</script>
+</body></html>
