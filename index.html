@@ -18,6 +18,19 @@ button{font:inherit;cursor:pointer;border:0;border-radius:15px;padding:14px 18px
 .options{display:grid;gap:11px}.option{width:100%;background:#202d43;color:white;border:1px solid #53617a;text-align:center;font-size:18px;direction:ltr}.option:hover{border-color:var(--cyan);background:#263a53}.option.correct{background:#124b42;border-color:var(--green)}.option.wrong{background:#552a3a;border-color:var(--red)}.option:disabled{cursor:default;opacity:1}
 .feedback{margin-top:16px;border-radius:15px;padding:14px 16px;line-height:1.7;background:#111b30;color:var(--muted)}.feedback.good{border:1px solid #208d70;color:#c7ffeb}.feedback.bad{border:1px solid #a8495c;color:#ffe0e6}.explain{display:block;margin-top:5px;color:#dce6f5}
 .actions{display:flex;justify-content:space-between;gap:10px;margin-top:18px;flex-wrap:wrap}.scorebig{font-size:52px;font-weight:900;color:var(--cyan);text-align:center}.result{text-align:center}.result h2{font-size:30px}.review{text-align:right;margin-top:18px}.review details{background:#131e33;border:1px solid #34425e;padding:12px;border-radius:12px;margin:8px 0}.review summary{cursor:pointer;font-weight:700}.footer{text-align:center;color:#8190aa;font-size:12px;margin:18px 0}
+
+.lesson{margin:22px 0 20px;text-align:right;background:#121d32;border:1px solid #3a4b68;border-radius:18px;padding:18px}
+.lesson h2{color:var(--gold);font-size:21px;margin:0 0 8px;text-align:center}
+.lesson-intro{color:var(--muted);line-height:1.8;text-align:center;margin:0 0 15px}
+.tense-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.tense-card{background:#1c2a42;border:1px solid #3b4d69;border-radius:14px;padding:13px;min-width:0}
+.tense-card h3{color:var(--cyan);font-size:16px;margin:0 0 8px}
+.tense-card p{color:#e7edf8;line-height:1.7;font-size:14px;margin:6px 0}
+.tense-card .rule{direction:ltr;text-align:left;color:var(--gold);font-weight:800;background:#111a2c;border-radius:8px;padding:7px}
+.tense-card .example{direction:ltr;text-align:left;color:#bdeef2}
+.lesson-tip{color:var(--muted);font-size:13px;line-height:1.7;margin:13px 0 0}
+@media(max-width:520px){.tense-grid{grid-template-columns:1fr}.lesson{padding:14px}}
+
 @media(max-width:520px){body{padding:12px}.hero,.panel{padding:19px}.features{grid-template-columns:1fr 1fr}.option{font-size:16px;padding:14px 10px}.actions button{flex:1}}
 </style>
 </head>
@@ -28,6 +41,41 @@ button{font:inherit;cursor:pointer;border:0;border-radius:15px;padding:14px 18px
     <div class="rocket">🚀⏳</div>
     <h1>آلة الزمن: أزمنة المستقبل</h1>
     <p>انطلقي في رحلة عبر الزمن! اختاري الزمن الصحيح في كل موقف، واجمعي النقاط لفتح بوابة المستقبل.</p>
+    <section class="lesson" aria-labelledby="lesson-title">
+      <h2 id="lesson-title">📚 تعرّفي إلى أزمنة المستقبل الأربعة</h2>
+      <p class="lesson-intro">قبل بدء التحدي، تعرّفي إلى متى نستخدم كل زمن، وكيف نكوّن الجملة.</p>
+      <div class="tense-grid">
+        <article class="tense-card">
+          <h3>1. المستقبل البسيط · Future Simple</h3>
+          <p class="rule">will + base verb</p>
+          <p>للتوقعات والوعود والقرارات التي نتخذها لحظة الكلام.</p>
+          <p class="example">I think it will rain tomorrow.</p>
+          <p>أعتقد أنها ستمطر غدًا.</p>
+        </article>
+        <article class="tense-card">
+          <h3>2. المستقبل المخطط · Be going to</h3>
+          <p class="rule">am / is / are + going to + verb</p>
+          <p>للخطط والنوايا المسبقة، أو عندما يوجد دليل واضح على ما سيحدث.</p>
+          <p class="example">Look at the clouds! It is going to rain.</p>
+          <p>انظري إلى الغيوم! إنها ستمطر.</p>
+        </article>
+        <article class="tense-card">
+          <h3>3. المضارع المستمر للمستقبل · Present Continuous</h3>
+          <p class="rule">am / is / are + verb-ing</p>
+          <p>للمواعيد والترتيبات المستقبلية المتفق عليها.</p>
+          <p class="example">We are meeting our teacher tomorrow.</p>
+          <p>سنلتقي معلمتنا غدًا.</p>
+        </article>
+        <article class="tense-card">
+          <h3>4. المستقبل المستمر · Future Continuous</h3>
+          <p class="rule">will be + verb-ing</p>
+          <p>لفعل سيكون مستمرًا في وقت محدد في المستقبل.</p>
+          <p class="example">At 8 p.m., I will be studying.</p>
+          <p>في الساعة الثامنة مساءً، سأكون أدرس.</p>
+        </article>
+      </div>
+      <p class="lesson-tip">💡 تذكّري: لا تختاري الزمن من شكل الفعل فقط؛ انتبهي إلى معنى الجملة والكلمات التي تحدد الوقت أو وجود خطة أو قرار.</p>
+    </section>
     <button class="primary" onclick="startGame()">ابدأ التحدي 🎮</button>
     <div class="features"><div class="feature">🧠 10 أسئلة متنوعة</div><div class="feature">⭐ نقاط وتغذية راجعة</div><div class="feature">🔁 أعيدي اللعب متى شئتِ</div></div>
   </section>
